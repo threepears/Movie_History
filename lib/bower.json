@@ -1,0 +1,24 @@
+{
+  "name": "lib",
+  "homepage": "https://github.com/Red-French/Movie_History",
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "firebase": "~2.3.2",
+    "jquery": "~2.1.4",
+    "requirejs": "~2.1.21",
+    "require-handlebars-plugin": "~1.0.0",
+    "q": "1.0.1",
+    "lodash": "~3.10.1"
+  }
+}
