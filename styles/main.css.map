@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAGA,IAAK;EACH,IAAI,EAAE,0BAAgB;EACtB,KAAK,EAJS,IAAI;;ACDpB,EAAG;EACD,MAAM,EAAE,IAAI;;AAEd,MAAO;EACL,MAAM,EAAE,IAAI;;AAGd,KAAM;EACJ,MAAM,EAAE,KAAK;;ACRf,cAAe;EACb,OAAO,EAAE,IAAI;;AAGf,IAAK;EACH,MAAM,EAAE,IAAI",
-"sources": ["../sass/main.scss","../sass/splash.scss","../sass/find_movies.scss"],
+"mappings": "AAGA,IAAK;EACH,IAAI,EAAE,0BAAgB;EACtB,KAAK,EAJS,IAAI;;ACDpB,EAAG;EACD,MAAM,EAAE,IAAI;;AAEd,MAAO;EACL,MAAM,EAAE,IAAI;;AAGd,KAAM;EACJ,MAAM,EAAE,KAAK;;ACRf,cAAe;EACb,OAAO,EAAE,IAAI;;AAGf,IAAK;EACH,MAAM,EAAE,IAAI;;ACLd,cAAe;EACb,OAAO,EAAE,IAAI;;AAGf,IAAK;EACH,MAAM,EAAE,IAAI",
+"sources": ["../sass/main.scss","../sass/splash.scss","../sass/find_movies.scss","../sass/search_movies.scss"],
 "names": [],
 "file": "main.css"
 }
