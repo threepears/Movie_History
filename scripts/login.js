@@ -1,5 +1,8 @@
 define(["firebase","templates"], function (Firebase, templates) {
 	var ref = new Firebase("https://movieshistory.firebaseio.com/");
+
+	// must authorize the users unique firebase reference.  maybe create new user
+	// ref when registering and authorize existing ref at login
 	var usersRef = new Firebase("https://movieshistory.firebaseio.com/users");
 	
 	// load splash screen
