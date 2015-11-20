@@ -16,6 +16,9 @@ requirejs.config({
 	}
 });
 
-require(["dependencies"], function(_$_) {
+require(["dependencies", "login"], function(_$_, login) {
 	console.log("Hellow from main.js");
+	console.log("load dependencies and login");
+	login.createNewUser();
+	login.loginUser();
 });
