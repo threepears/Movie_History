@@ -16,10 +16,8 @@ requirejs.config({
 	}
 });
 
-require(["dependencies", "login"], function(_$_, login) {
-	console.log("Hellow from main.js");
-	console.log("load dependencies and login");
-	login.createNewUser();
-	login.loginUser();
+require(["dependencies", "login", "handlers"], function(_$_, login, handlers) {
+	console.log("Hello from main.js");
+
 
 });
