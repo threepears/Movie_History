@@ -21,4 +21,5 @@ require(["dependencies", "login"], function(_$_, login) {
 	console.log("load dependencies and login");
 	login.createNewUser();
 	login.loginUser();
+
 });
