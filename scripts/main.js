@@ -18,4 +18,7 @@ requirejs.config({
 
 require(["dependencies"], function(_$_) {
 	console.log("Hellow from main.js");
+
+
+	templates.loadSplash();
 });
