@@ -1,5 +1,9 @@
-define(["firebase"], function (Firebase) {
+define(["firebase","templates"], function (Firebase, templates) {
 	var ref = new Firebase("https://movieshistory.firebaseio.com/");
+	
+	// load splash screen
+	templates.loadSplash();
+
 	console.log("ref",ref);
 	return {
 		createNewUser: function() {
