@@ -10,9 +10,9 @@ return {
         console.log("movies = ", movies);
         require(["hbs!../templates/find_details"], function(resultsTemplate) {
       	$("#findResults").html(resultsTemplate(movies));
-	  	})
-      })
+	  	});
+      });
     }
-}
+};
   }
-)
+);
