@@ -17,11 +17,12 @@ define(function (require) {
 
 	// attach click handler to 'find movies' search button
 	$(document).on("click","#btn-find", function(event) {
-	console.log("click");
-	var movieTitle = $("#titleText").val();
-	movieTitle = movieTitle.replace(/ /g, "+"); 
-	console.log("movie Title = ", movieTitle);
-	
+		console.log("click");
+		var movieTitle = $("#titleText").val();
+		movieTitle = movieTitle.replace(/ /g, "+"); 
+		console.log("movie Title = ", movieTitle);
 	});
+	
+	
 
 });
