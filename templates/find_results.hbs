@@ -1,26 +1,42 @@
-<div class="container container-fluid">
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
+ <div class="container-fluid">
+   <!-- Brand and toggle get grouped for better mobile display -->
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><button class="btn btn-default" type="button">Find Movies</button></li>
-        <li><button class="btn btn-default" type="button">Search My Movies</button></li>
-      </ul>
-      
-      <ul class="nav navbar-nav navbar-right">
-        <li><button class="btn btn-default" type="button">Logout</button></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+   <!-- Collect the nav links, forms, and other content for toggling -->
+   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <ul class="nav navbar-nav">
+       <li class="active"><button type="button" class="btn btn-default" data-toggle="modal" data-target=".find-movies-modal">Find Movies</button></li>
+       <li><button type="button" class="btn btn-default" data-toggle="modal" data-target=".search-movies-modal">Search My Movies</button></li>
+     </ul>
+     
+     <ul class="nav navbar-nav navbar-right">
+       <li><button class="btn btn-default" type="button">Logout</button></li>
+     </ul>
+   </div><!-- /.navbar-collapse -->
+ </div><!-- /.container-fluid -->
 </nav>
+
+
+<div>
+  <button class="btn btn-link watch">watched</button>
+  <button class="btn btn-link watch">unwatched</button>
+</div>
+
+
+<div class="container container-fluid text-center">
   <div class="row">
-      <div class="col-md-8">
-        <h1>Results of 'Find Movie'</h1>
+    <div class="col-md-8">
+      
+    
+    <!-- PUT OMDB MOVIE POSTER AND MOVIE INFO HERE -->
+
+
+
+      
+      <!-- MODALS -->
+      <div id="find-movies-modal"></div>
+      <div id="search-movies-modal"></div>
+
+    </div>
   </div>
 </div>
-<div class="findResults"></div>
-</div>
-
