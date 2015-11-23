@@ -21,6 +21,7 @@ define(function (require) {
 		var movieTitle = $("#titleText").val();
 		movieTitle = movieTitle.replace(/ /g, "+"); 
 		console.log("movie Title = ", movieTitle);
+
 	});
 	
 	
