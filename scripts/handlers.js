@@ -27,7 +27,7 @@ define(function (require) {
 		console.log("keypress detected: ", event.which);
 		if (event.which === 13)
 		{
-			var movieTitle = $("#search-movies").val();
+			var movieTitle = $("#search-movies").val().toLowerCase();
 			movieTitle = movieTitle.replace(/ /g, "+"); 
 			console.log("movie Title = ", movieTitle);
 			findMovies.findMovies(movieTitle);
