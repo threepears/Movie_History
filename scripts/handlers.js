@@ -16,17 +16,25 @@ define(function (require) {
 		login.loginUser();
 	});
 
-	// attach click handler to 'find movies' search button
-	$(document).on("click","#btn-find", function(event) {
-		console.log("click");
-		var movieTitle = $("#titleText").val();
-		movieTitle = movieTitle.replace(/ /g, "+"); 
-		console.log("movie Title = ", movieTitle);
-		findMovies.findMovies(movieTitle);
-
+	// attach click handler to logout button
+	$(document).on("click","#btn-logout", function(event) {
+		console.log("You clicked the logout btn.");
+		// login.logout();
 	});
 
-	$(document).on("click", ".btn-watched", function(event) {
+	// attach click handler to 'find movies' search button
+	$(document).on("keypress","#search-movies", function(event) {
+		console.log("keypress detected: ", event.which);
+		if (event.which === 13)
+		{
+			var movieTitle = $("#search-movies").val();
+			movieTitle = movieTitle.replace(/ /g, "+"); 
+			console.log("movie Title = ", movieTitle);
+			findMovies.findMovies(movieTitle);
+		}
+	});
+
+	$(document).on("click", ".btn-add", function(event) {
 		// create movie data object from OMDB info stored on DOM: MVP needs actors, year, title, and poster
 		console.log("event.target",$(event.target));
 		var moviePoster = $(event.target.parentElement.firstElementChild.firstElementChild).attr("src");

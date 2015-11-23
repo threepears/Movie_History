@@ -6,4 +6,9 @@ body {
   color: $primary-color;
 }
 
+img.movie-poster {
+	height: 215px;
+	width: 150px;
+}
+
 @import "splash";
