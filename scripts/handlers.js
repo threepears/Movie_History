@@ -44,12 +44,16 @@ define(function (require) {
 		// store any movie any user adds to a global movies location in firebase
 		var moviesRef = new Firebase("https://movieshistory.firebaseio.com/movies");
 		// store the returned UID from firebase push to pass to users library of unwatched movies with rating "unwatched"
+		// movieRef stores a reference to the path of where we are pushing our data....which is firebase/movies
+		// when you use push, Firebase creates a unique id
 		var movieRef = moviesRef.push(movieData);
+		movieRef = movieRef.toString().split("movies/")[1]	;
+		console.log("movieRef", movieRef);
 
 		// get current auth user ID
+
 		var authData = moviesRef.getAuth();
 		var userRef = new Firebase("https://movieshistory.firebaseio.com/users/" + authData.uid);
-		movieRef = movieRef.toString().split("movies/")[1]	;
 		userRef.child(movieRef).set("unwatched");
 	});
 	
