@@ -35,9 +35,10 @@
           <div class="col-md-4">
             <div class="movie">
               <img class="movie-poster" src="{{this.Poster}}" alt="{{this.Title}}">
-              <button class="glyphicon glyphicon-remove-circle">
+              <button class="glyphicon glyphicon-remove-circle"></button>
+              <div class="year">{{{this.Year}}}</div>
             </div>
-            <button type="button">Watch</button>
+            <button type="button" class="btn-watched">Add</button>
           </div>
         {{/each}}
       </div>

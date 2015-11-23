@@ -25,6 +25,33 @@ define(function (require) {
 		findMovies.findMovies(movieTitle);
 
 	});
+
+	$(document).on("click", ".btn-watched", function(event) {
+		// create movie data object from OMDB info stored on DOM: MVP needs actors, year, title, and poster
+		console.log("event.target",$(event.target));
+		var moviePoster = $(event.target.parentElement.firstElementChild.firstElementChild).attr("src");
+		var movieTitle = $(event.target.parentElement.firstElementChild.firstElementChild).attr("alt");
+		var movieActors = "actors"; // how do we get the actors?
+		var movieYear = "year"; // currently stored in HBS template on DOM
+
+		var movieData = {
+			"Poster": moviePoster,
+			"Title": movieTitle,
+			"Year": movieYear,
+			"Actors": movieActors
+		};
+
+		// store any movie any user adds to a global movies location in firebase
+		var moviesRef = new Firebase("https://movieshistory.firebaseio.com/movies");
+		// store the returned UID from firebase push to pass to users library of unwatched movies with rating "unwatched"
+		var movieRef = moviesRef.push(movieData);
+
+		// get current auth user ID
+		var authData = moviesRef.getAuth();
+		var userRef = new Firebase("https://movieshistory.firebaseio.com/users/" + authData.uid);
+		movieRef = movieRef.toString().split("movies/")[1]	;
+		userRef.child(movieRef).set("unwatched");
+	});
 	
 	
 
