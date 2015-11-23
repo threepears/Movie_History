@@ -8,8 +8,8 @@ return {
       }).done(function(movies) {
         // console.log("inside findMovies done");
         console.log("movies = ", movies);
-        require(["hbs!../templates/find_details"], function(resultsTemplate) {
-      	$("#findResults").html(resultsTemplate(movies));
+        require(["hbs!../templates/find_results"], function(resultsTemplate) {
+      	$("#catcher").html(resultsTemplate({Search: movies}));
 	  	});
       });
     }

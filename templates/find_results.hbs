@@ -18,8 +18,8 @@
 
 
 <div>
-  <button class="btn btn-link watch">watched</button>
-  <button class="btn btn-link watch">unwatched</button>
+  <button class="btn btn-link">watched</button>
+  <button class="btn btn-link">unwatched</button>
 </div>
 
 
@@ -29,9 +29,9 @@
       
     
     <!-- PUT OMDB MOVIE POSTER AND MOVIE INFO HERE -->
-
-
-
+    {{#each movies}} 
+      <h1>{{this.title}}</h1>
+    {{/each}}
       
       <!-- MODALS -->
       <div id="find-movies-modal"></div>
