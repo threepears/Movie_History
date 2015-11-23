@@ -2,6 +2,7 @@ define(function (require) {
 	// define dependencies
 	var $ = require("jquery");
 	var login = require("login");
+	var findMovies = require("findMovies");
 	
 	// attach click handler to register button
 	$(document).on("click","#btn-register", function(event) {
@@ -21,6 +22,8 @@ define(function (require) {
 		var movieTitle = $("#titleText").val();
 		movieTitle = movieTitle.replace(/ /g, "+"); 
 		console.log("movie Title = ", movieTitle);
+		var results = findMovies.findMovies(movieTitle);
+		console.log("results",results);
 
 	});
 	
