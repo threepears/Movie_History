@@ -11,8 +11,6 @@ return {
         require(["hbs!../templates/find_results"], function(resultsTemplate) {
       	$("#catcher").html(resultsTemplate(movies));
 	  	});
-        bd = document.querySelector('.modal-backdrop');
-        bd.remove();
       });
     }
 };

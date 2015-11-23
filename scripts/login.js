@@ -1,7 +1,5 @@
 define(["firebase","templates"], function (Firebase, templates) {
-	var ref = new Firebase("https://movieshistory.firebaseio.com/");
-	var usersRef = new Firebase("https://movieshistory.firebaseio.com/users");
-	
+	var ref = new Firebase("https://movieshistory.firebaseio.com/");	
 	// load splash screen
 	templates.loadSplash();
 
@@ -31,8 +29,6 @@ define(["firebase","templates"], function (Firebase, templates) {
 				// may need to wait until a user adds a movie, then push
 				// {movieref: rating || "unwatched"} to user firebase ref
 				var userID = userData.uid;
-				usersRef.child(userID).set({"movieRef": "rating"});
-				
 				// direct user to initial_page after successful login
 				templates.loadInitialPage();
 				} // end else
@@ -44,14 +40,14 @@ define(["firebase","templates"], function (Firebase, templates) {
 			
 			/* TEST LOGIN CODE HERE */
 			/* UNCOMMMENT NEXT TWO LINES TO AVOID TYPING IN LOGIN INFO */
-			email    : "test@test.com",
-			password : "pass"
+			// email    : "test@test.com",
+			// password : "pass"
 			/* END TEST LOGIN PARAMS */
 
 			/* PRODUCTIN LOGIN CODE */
 			/* UNCOMMMENT NEXT TWO LINES FOR PRODUCTION USE */
-			 // email    : $("#email").val(),
-			 // password : $("#pwd").val()
+			 email    : $("#email").val(),
+			 password : $("#pwd").val()
 			/* END PRODUCTION LOGIN PARAMS */
 
 
@@ -65,7 +61,6 @@ define(["firebase","templates"], function (Firebase, templates) {
 					// Reset form inputs on fail
 					$("#email").val("");
 					$("#pwd").val("");
-
 				} else {
 					// log success message and user data
 					console.log("Authenticated successfully with payload:", authData);
