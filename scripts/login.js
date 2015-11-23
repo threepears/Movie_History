@@ -78,10 +78,11 @@ define(["firebase","templates"], function (Firebase, templates) {
 			
 			// get authdata object by calling firebase method on reference created up top
 			var authData = ref.getAuth();
-
+			console.log("authData", authData);
+			console.log("authData.uid", authData.uid);
 			// construct new firebase reference to user data location
 			var userRef = new Firebase("https://movieshistory.firebaseio.com/users/" + authData.uid);
-			
+			console.log("userRef", userRef);
 			// unauthorize user location
 			userRef.unauth();
 			

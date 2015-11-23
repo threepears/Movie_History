@@ -19,7 +19,7 @@ define(function (require) {
 	// attach click handler to logout button
 	$(document).on("click","#btn-logout", function(event) {
 		console.log("You clicked the logout btn.");
-		// login.logout();
+		login.logout();
 	});
 
 	// attach click handler to 'find movies' search button
