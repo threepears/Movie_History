@@ -29,13 +29,62 @@
       
     
     <!-- PUT OMDB MOVIE POSTER AND MOVIE INFO HERE -->
-    {{#each movies}} 
-      <h1>{{this.title}}</h1>
-    {{/each}}
+    <div class="container">
+      <div class="row">
+        {{#each Search}} 
+          <div class="col-md-4">
+            <div class="movie">
+              <img class="movie-poster" src="{{this.Poster}}" alt="{{this.Title}}">
+              <button class="glyphicon glyphicon-remove-circle">
+            </div>
+            <button type="button">Watch</button>
+          </div>
+        {{/each}}
+      </div>
+    </div>
       
       <!-- MODALS -->
-      <div id="find-movies-modal"></div>
-      <div id="search-movies-modal"></div>
+      <div id="find-movies-modal">
+<div class="modal fade find-movies-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content text-center">
+      <div class="row">
+        <h1>Find Movies</h1>
+      </div>
+      
+      <div class="row">
+        <input id="titleText" type="text" name="find-movies" autofocus>
+      </div>
+      
+      <div class="row">
+        <button id="btn-find" class="btn btn-default" data-dismiss="modal">Search</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+      </div>
+
+      <div id="search-movies-modal">
+        <div class="modal fade search-movies-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content text-center">
+      <div class="row">
+        <h1>Search My Movies</h1>
+      </div>
+      
+      <div class="row">
+        <input type="text" name="find-movies" autofocus>
+      </div>
+      
+      <div class="row">
+        <button class="btn btn-default" data-dismiss="modal">Search</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+      </div>
 
     </div>
   </div>

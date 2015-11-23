@@ -44,14 +44,14 @@ define(["firebase","templates"], function (Firebase, templates) {
 			
 			/* TEST LOGIN CODE HERE */
 			/* UNCOMMMENT NEXT TWO LINES TO AVOID TYPING IN LOGIN INFO */
-			// email    : "test@test.com",
-			// password : "pass"
+			email    : "test@test.com",
+			password : "pass"
 			/* END TEST LOGIN PARAMS */
 
 			/* PRODUCTIN LOGIN CODE */
 			/* UNCOMMMENT NEXT TWO LINES FOR PRODUCTION USE */
-			 email    : $("#email").val(),
-			 password : $("#pwd").val()
+			 // email    : $("#email").val(),
+			 // password : $("#pwd").val()
 			/* END PRODUCTION LOGIN PARAMS */
 
 

@@ -9,8 +9,10 @@ return {
         // console.log("inside findMovies done");
         console.log("movies = ", movies);
         require(["hbs!../templates/find_results"], function(resultsTemplate) {
-      	$("#catcher").html(resultsTemplate({Search: movies}));
+      	$("#catcher").html(resultsTemplate(movies));
 	  	});
+        bd = document.querySelector('.modal-backdrop');
+        bd.remove();
       });
     }
 };
