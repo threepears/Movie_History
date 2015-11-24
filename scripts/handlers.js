@@ -27,7 +27,10 @@ define(function (require) {
 		console.log("Filtering 'ALL' users movies");
 		findMovies.getAllUserMovies()
 			.then(function(userMovieData) {
-		console.log("userMovies", userMovieData);
+			console.log("userMovies", userMovieData);
+			require(["hbs!../templates/find_results"], function(resultsTemplate) {
+				$("#movie-catcher").html(resultsTemplate(userMovieData));
+			});
 		});
 	});
 	// attach click handler to 'watched' link
@@ -37,6 +40,21 @@ define(function (require) {
 	// attach click handler to 'unwatched' link
 	$(document).on("click","#link-unwatched", function(event) {
 		console.log("Filtering 'UNWATCHED' users movies");
+		var unwatchedMovies = {};
+		findMovies.getAllUserMovies()
+			.then(function(userMovieData) {
+				var movies = userMovieData;
+				for (var movieRefKey in movies) {
+					console.log(movieRefKey);
+					if (movies[movieRefKey].Rating === "unwatched"){
+						unwatchedMovies[movieRefKey] = movies[movieRefKey];
+					}
+				}
+				console.log("unwatchedMovies",unwatchedMovies);
+				require(["hbs!../templates/find_results"], function(resultsTemplate) {
+					$("#movie-catcher").html(resultsTemplate(unwatchedMovies));
+				});
+			});
 	});
 	// attach click handler to 'favorites' link
 	$(document).on("click","#link-favorites", function(event) {
