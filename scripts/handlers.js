@@ -65,6 +65,17 @@ define(function (require) {
 		userRef.child(movieRef).set("unwatched");
 	});
 	
-	
-
+	// FOR SEARCH INPUT FIELD TO SEARCH USER'S FIREBASE
+	// pull all movies of logged-in user's Firebase
+	var moviesRef = new Firebase("https://movieshistory.firebaseio.com/movies");
+	var authData = moviesRef.getAuth();	
+	var userRef = new Firebase("https://movieshistory.firebaseio.com/users/" + authData.uid);
+		userRef.once("value", function(snapshot) {
+		    // set 'key' equal to each user
+		    var key = snapshot.key();
+		    // set childData equal to contents of the child
+		    var childData = snapshot.val();
+		  console.log("key = ", key);
+		  console.log("childData = ", childData);
+	});
 });
