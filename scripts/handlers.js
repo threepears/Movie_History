@@ -22,21 +22,39 @@ define(function (require) {
 		login.logout();
 	});
 
+	// attach click handler to 'all' link
+	$(document).on("click","#link-all", function(event) {
+		console.log("Filtering 'ALL' users movies");
+		var userMovies = findMovies.getAllUserMovies();
+		console.log("userMovies", userMovies);
+	});
+	// attach click handler to 'watched' link
+	$(document).on("click","#link-watched", function(event) {
+		console.log("Filtering 'WATCHED' users movies");
+	});
+	// attach click handler to 'unwatched' link
+	$(document).on("click","#link-unwatched", function(event) {
+		console.log("Filtering 'UNWATCHED' users movies");
+	});
+	// attach click handler to 'favorites' link
+	$(document).on("click","#link-favorites", function(event) {
+		console.log("Filtering 'FAVORITES' users movies");
+	});
+
 	// attach click handler to 'find movies' search button
 	$(document).on("keypress","#search-movies", function(event) {
 		console.log("keypress detected: ", event.which);
 		if (event.which === 13)
 		{
-			var movieTitle = $("#search-movies").val().toLowerCase();
-			movieTitle = movieTitle.replace(/ /g, "+"); 
-			console.log("movie Title = ", movieTitle);
-			findMovies.findMovies(movieTitle);
+			var userInput = $("#search-movies").val(); 
+			console.log("movie Title = ", userInput);
+			findMovies.findOMDBMovies(userInput);
 		}
 	});
 
-	$(document).on("click", ".btn-add", function(event) {
+	$(document).on("click", ".btn-add-movie", function(event) {
 		// create movie data object from OMDB info stored on DOM: MVP needs actors, year, title, and poster
-		console.log("event.target",$(event.target));
+		console.log("event.target", $(event.target));
 		var moviePoster = $(event.target.parentElement.firstElementChild.firstElementChild).attr("src");
 		var movieTitle = $(event.target.parentElement.firstElementChild.firstElementChild).attr("alt");
 		var movieActors = "actors"; // how do we get the actors?
