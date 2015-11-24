@@ -25,8 +25,10 @@ define(function (require) {
 	// attach click handler to 'all' link
 	$(document).on("click","#link-all", function(event) {
 		console.log("Filtering 'ALL' users movies");
-		var userMovies = findMovies.getAllUserMovies();
-		console.log("userMovies", userMovies);
+		findMovies.getAllUserMovies()
+			.then(function(userMovieData) {
+		console.log("userMovies", userMovieData);
+		});
 	});
 	// attach click handler to 'watched' link
 	$(document).on("click","#link-watched", function(event) {

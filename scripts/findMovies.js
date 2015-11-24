@@ -1,10 +1,11 @@
-define(["jquery", "firebase"],
-function($, Firebase) {
+define(["jquery", "firebase","Q"],
+function($, Firebase,Q) {
   var ref = new Firebase ("https://movieshistory.firebaseio.com/");
   var moviesRef = new Firebase ("https://movieshistory.firebaseio.com/movies/");
   var authData = ref.getAuth();
   var userUID = authData.uid;
   var userDataRef = new Firebase("https://movieshistory.firebaseio.com/users/"+userUID);
+  var deferred = Q.defer();
 
 return {
       // ***get user input from search box and return object with matching movies from OMDB
@@ -59,11 +60,11 @@ return {
             // ***combine temp object with user data to 
             userMovieData[snapshot.key()].Rating = tempUserMovieData[snapshot.key()].Rating;
             // console.log("userMovieData", userMovieData);
-            console.log("userMovieData", userMovieData);
+            deferred.resolve(userMovieData);
           }); // end movieRef.once callback
         }); // end snapshot.forEach callback
       }); // end userDataRef.once callback
-    return userMovieData;
+    return deferred.promise;
     } // end getAllSUerMovies function
 
 }; // end RETURN
