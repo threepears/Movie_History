@@ -21,7 +21,7 @@ define(function (require) {
 		console.log("You clicked the logout btn.");
 		login.logout();
 	});
-
+ 
 	// attach click handler to 'all' link
 	$(document).on("click","#link-all", function(event) {
 		console.log("Filtering 'ALL' users movies");

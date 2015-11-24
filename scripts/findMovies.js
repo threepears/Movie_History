@@ -59,9 +59,8 @@ return {
             // ***combine temp object with user data to 
             userMovieData[snapshot.key()].Rating = tempUserMovieData[snapshot.key()].Rating;
             // console.log("userMovieData", userMovieData);
-            return userMovieData;
+            console.log("userMovieData", userMovieData);
           }); // end movieRef.once callback
-    console.log("userMovieData", userMovieData);
         }); // end snapshot.forEach callback
       }); // end userDataRef.once callback
     return userMovieData;
