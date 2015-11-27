@@ -4,6 +4,7 @@ define(function (require) {
 	var login = require("login");
 	var findMovies = require("findMovies");
 	
+/**************** LOGIN / LOGOUT *******************/
 	// attach click handler to register button
 	$(document).on("click","#btn-register", function(event) {
 		console.log("You clicked the 'Register' button.");
@@ -22,13 +23,14 @@ define(function (require) {
 		login.logout();
 	});
  
+ /************************FILTERS ************************/
 	// attach click handler to 'all' link
 	$(document).on("click","#link-all", function(event) {
 		console.log("Filtering 'ALL' users movies");
 		findMovies.getAllUserMovies()
 			.then(function(userMovieData) {
 			console.log("userMovies", userMovieData);
-			require(["hbs!../templates/find_results"], function(resultsTemplate) {
+			require(["hbs!../templates/filter_results"], function(resultsTemplate) {
 				$("#movie-catcher").html(resultsTemplate(userMovieData));
 			});
 		});
@@ -39,14 +41,13 @@ define(function (require) {
 		var watchedMovies = {};
 		findMovies.getAllUserMovies()
 			.then(function(userMovieData) {
-				var movies = userMovieData;
-				for (var movieRefKey in movies) {
-					if (movies[movieRefKey].Rating !== "unwatched") {
-						watchedMovies[movieRefKey] = movies[movieRefKey];
+				for (var movieRefKey in userMovieData) {
+					if (userMovieData[movieRefKey].Rating !== "unwatched") {
+						watchedMovies[movieRefKey] = userMovieData[movieRefKey];
 					}
 				}
 				console.log("watched movies", watchedMovies);
-				require(["hbs!../templates/find_results"], function(resultsTemplate) {
+				require(["hbs!../templates/filter_results"], function(resultsTemplate) {
 					$("#movie-catcher").html(resultsTemplate(watchedMovies));
 				});
 			});
@@ -64,7 +65,7 @@ define(function (require) {
 					}
 				}
 				console.log("unwatchedMovies",unwatchedMovies);
-				require(["hbs!../templates/find_results"], function(resultsTemplate) {
+				require(["hbs!../templates/filter_results"], function(resultsTemplate) {
 					$("#movie-catcher").html(resultsTemplate(unwatchedMovies));
 				});
 			});
@@ -82,12 +83,13 @@ define(function (require) {
 					}
 				}
 				console.log("favorite movies", favoriteMovies);
-				require(["hbs!../templates/find_results"], function(resultsTemplate) {
+				require(["hbs!../templates/filter_results"], function(resultsTemplate) {
 					$("#movie-catcher").html(resultsTemplate(favoriteMovies));
 				});
 			});
 	});
 
+/****************** SEARCH **************************/
 	// attach click handler to 'find movies' search button
 	$(document).on("keypress","#search-movies", function(event) {
 		console.log("keypress detected: ", event.which);
@@ -99,6 +101,7 @@ define(function (require) {
 		}
 	});
 
+/************************* ADD btn click *************************/
 	$(document).on("click", ".btn-add-movie", function(event) {
 		// create movie data object from OMDB info stored on DOM: MVP needs actors, year, title, and poster
 		console.log("event.target", $(event.target));
@@ -123,12 +126,15 @@ define(function (require) {
 		movieRef = movieRef.toString().split("movies/")[1]	;
 		console.log("movieRef", movieRef);
 
-		// get current auth user ID
-
+		// get current auth user ID and store movie under user firebase location
 		var authData = moviesRef.getAuth();
 		var userRef = new Firebase("https://movieshistory.firebaseio.com/users/" + authData.uid);
 		userRef.child(movieRef).set("unwatched");
 	});
+
+/*********************** WATCHED btn click ********************/
+
+/*********************** STAR RATING ************************/
 	
 	
 
