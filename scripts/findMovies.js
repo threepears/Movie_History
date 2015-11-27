@@ -25,7 +25,7 @@ return {
 
         // ***Pass results to HBS template (consider returning movies as object and passing to HBS outside of method?)
         require(["hbs!../templates/find_results"], function(resultsTemplate) {
-      	$("#movie-catcher").html(resultsTemplate(movies));
+      	$("#movie-catcher").html(resultsTemplate( {Search:movies} ));
 	  	});
       });
     },

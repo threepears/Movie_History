@@ -1,4 +1,4 @@
-define(["firebase","templates"], function (Firebase, templates) {
+define(["firebase","templates","findMovies"], function (Firebase, templates, findMovies) {
 	var ref = new Firebase("https://movieshistory.firebaseio.com/");	
 	// load splash screen
 	templates.loadSplash();
@@ -68,6 +68,7 @@ define(["firebase","templates"], function (Firebase, templates) {
 					$("#error").html("Authenticated successfully.", error);
 					// direct user to initial_page after successful login
 					templates.loadInitialPage();
+					findMovies.getAllUserMovies();
 				} // end else
 			}); // end onComplete callback for ref.authWithPassword
 		}, // end loginUser

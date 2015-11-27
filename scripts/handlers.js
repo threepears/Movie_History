@@ -36,6 +36,20 @@ define(function (require) {
 	// attach click handler to 'watched' link
 	$(document).on("click","#link-watched", function(event) {
 		console.log("Filtering 'WATCHED' users movies");
+		var watchedMovies = {};
+		findMovies.getAllUserMovies()
+			.then(function(userMovieData) {
+				var movies = userMovieData;
+				for (var movieRefKey in movies) {
+					if (movies[movieRefKey].Rating !== "unwatched") {
+						watchedMovies[movieRefKey] = movies[movieRefKey];
+					}
+				}
+				console.log("watched movies", watchedMovies);
+				require(["hbs!../templates/find_results"], function(resultsTemplate) {
+					$("#movie-catcher").html(resultsTemplate(watchedMovies));
+				});
+			});
 	});
 	// attach click handler to 'unwatched' link
 	$(document).on("click","#link-unwatched", function(event) {
@@ -45,8 +59,7 @@ define(function (require) {
 			.then(function(userMovieData) {
 				var movies = userMovieData;
 				for (var movieRefKey in movies) {
-					console.log(movieRefKey);
-					if (movies[movieRefKey].Rating === "unwatched"){
+					if (movies[movieRefKey].Rating === "unwatched") {
 						unwatchedMovies[movieRefKey] = movies[movieRefKey];
 					}
 				}
@@ -59,6 +72,20 @@ define(function (require) {
 	// attach click handler to 'favorites' link
 	$(document).on("click","#link-favorites", function(event) {
 		console.log("Filtering 'FAVORITES' users movies");
+		var favoriteMovies = {};
+		findMovies.getAllUserMovies()
+			.then(function(userMovieData) {
+				var movies = userMovieData;
+				for (var movieRefKey in movies) {
+					if (movies[movieRefKey].Rating === 5) {
+						favoriteMovies[movieRefKey] = movies[movieRefKey];
+					}
+				}
+				console.log("favorite movies", favoriteMovies);
+				require(["hbs!../templates/find_results"], function(resultsTemplate) {
+					$("#movie-catcher").html(resultsTemplate(favoriteMovies));
+				});
+			});
 	});
 
 	// attach click handler to 'find movies' search button
