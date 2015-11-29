@@ -1,0 +1,14 @@
+<!-- PUT OMDB MOVIE POSTER AND MOVIE INFO HERE -->
+<div class="container">
+  <div class="row">
+    {{#each this}} 
+      <div class="col-md-3">
+        <div class="movie">
+          <img class="movie-poster" src="{{Poster}}" alt="{{Title}}">
+          <button id="btn-delete-movie" class="glyphicon glyphicon-remove-circle">
+        </div>
+        <button class="btn-add-movie" type="button">Add</button>
+      </div>
+    {{/each}}
+  </div>
+</div>
