@@ -92,12 +92,26 @@ define(function (require) {
 /****************** SEARCH **************************/
 	// attach click handler to 'find movies' search button
 	$(document).on("keypress","#search-movies", function(event) {
-		console.log("keypress detected: ", event.which);
+		// console.log("keypress detected: ", event.which);
 		if (event.which === 13)
 		{
 			var userInput = $("#search-movies").val(); 
 			console.log("movie Title = ", userInput);
-			findMovies.findOMDBMovies(userInput);
+			
+			// search OMDB for movies matching title
+			findMovies.findOMDBMovies(userInput)
+				.then(function(OMDBSearchResults) {
+		        		console.log("OMDB Search Results", OMDBSearchResults);
+
+					// CALL FUNCTION TO SEARCH FIREBASE FOR MOVIES HERE
+
+					// JOIN SEARCH RESULTS AND PASS TO HBS
+
+					// ***Pass results to HBS template (consider returning movies as object and passing to HBS outside of method?)
+		        		require(["hbs!../templates/find_results"], function(resultsTemplate) {
+		      			$("#movie-catcher").html(resultsTemplate(OMDBSearchResults));
+			  		});
+				});
 		}
 	});
 

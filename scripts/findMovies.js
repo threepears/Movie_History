@@ -5,11 +5,11 @@ function($, Firebase,Q) {
   var authData = ref.getAuth();
   var userUID = authData.uid;
   var userDataRef = new Firebase("https://movieshistory.firebaseio.com/users/"+userUID);
-  var deferred = Q.defer();
 
 return {
       // ***get user input from search box and return object with matching movies from OMDB
-	findOMDBMovies: function (searchInput) {
+  findOMDBMovies: function (searchInput) {
+      var deferred = Q.defer();
       console.log("inside findMovies function");
 
       // ***format user input for url to be used in ajax call
@@ -18,21 +18,18 @@ return {
 
       // ***submit GET request to OMDB
       $.ajax({url: "http://www.omdbapi.com/?s=" + searchInput + "&r=json"
-      }).done( function(movies) {
-
+      }).done( function(searchResults) {
         // console.log("inside findMovies done");
-        console.log("movies = ", movies);
-
-        // ***Pass results to HBS template (consider returning movies as object and passing to HBS outside of method?)
-        require(["hbs!../templates/find_results"], function(resultsTemplate) {
-      	$("#movie-catcher").html(resultsTemplate(movies));
-	  	});
+        console.log("movies = ", searchResults);
+        deferred.resolve(searchResults);
       });
+      return deferred.promise;
     },
 
 
     /*************** getAllUserMovies ***********/
     getAllUserMovies: function () {
+      var deferred = Q.defer();
       var userMovieData = {};
       var tempUserMovieData = {};
       userDataRef.once("value", function(snapshot) {
