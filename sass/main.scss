@@ -12,3 +12,17 @@ img.movie-poster {
 }
 
 @import "splash";
+
+
+.movie button {
+	position: absolute;
+	top: 8px;
+	right: 80px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.btn-add-movie {
+	margin: 5px 20px 20px 20px;
+}
