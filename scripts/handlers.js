@@ -192,6 +192,7 @@ define(function (require) {
 
 	$(document).on("click", ".movie-poster", function(event) {
 		console.log("you clicked a movie poster");
+
 		// may need a "display modal call"
 
 		var movieInfo = {};
@@ -212,5 +213,6 @@ define(function (require) {
 	});
 
 	//may need a close modal button click handler
+
 
 });
