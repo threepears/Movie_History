@@ -22,7 +22,7 @@ return {
       $.ajax({url: "http://www.omdbapi.com/?s=" + searchInput + "&r=json"
       }).done( function(searchResults) {
         // console.log("inside findMovies done");
-        // console.log("movies = ", searchResults);
+         // console.log("movies = ", searchResults);
         deferred.resolve(searchResults);
       });
       return deferred.promise;
@@ -32,11 +32,13 @@ return {
 
     /*************** getAllUserMovies ***********/
     getAllUserMovies: function () {
+      console.log("in getAllUserMovies");
       var deferred = Q.defer();
       var userMovieData = {};
       var tempUserMovieData = {};
+      console.log("userDataRef",userDataRef.toString());
       userDataRef.once("value", function(snapshot) {
-
+        console.log("snapshot",snapshot.val());
         // ***The callback function will only get called once since we return true
         // ***get movieRef keys to get data from firebase/movies location
         snapshot.forEach(function(childSnapshot) {
@@ -45,7 +47,7 @@ return {
           // console.log("childSnapshot key", childSnapshot.key());
           // console.log("childSnapshot val", childSnapshot.val());
           tempUserMovieData[childSnapshot.key()] = {"Rating" : childSnapshot.val()};
-          // console.log("tempUserMovieData", tempUserMovieData);
+          console.log("tempUserMovieData", tempUserMovieData);
           
           // ******PUT IN METHOD called: getMovieData(movieKey): function() {};
           // ***create reference to firebase movies/movieRef location
@@ -59,7 +61,7 @@ return {
 
             // ***combine temp object with user data to 
             userMovieData[snapshot.key()].Rating = tempUserMovieData[snapshot.key()].Rating;
-            // console.log("userMovieData", userMovieData);
+            console.log("userMovieData", userMovieData);
             deferred.resolve(userMovieData);
           }); // end movieRef.once callback
         }); // end snapshot.forEach callback

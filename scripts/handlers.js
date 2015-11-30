@@ -103,17 +103,17 @@ define(function (require) {
 			var userInput = $("#search-movies").val();
 			$("#search-movies").val("");
 			console.log("user search input = ", userInput);
-			var searchResults;
+			var searchResults = {};
 			// search OMDB for movies matching title
 			findMovies.searchOMDBMovies(userInput)
 				.then(function(OMDBSearchResults) {
 		        		searchResults = OMDBSearchResults;
+		        			console.log("Search Results", searchResults);
 					findMovies.getAllUserMovies()
 						.then(function( userMoviesToSearch ) {
+						console.log("userMoviesToSearch", userMoviesToSearch);
 						
 						// at this point, shoudl have OMDB results in searchResults and firebase movies in userMoviesToSearch
-		        			console.log("OMDB Search Results", searchResults);
-						console.log("userMoviesToSearch", userMoviesToSearch);
 
 						// push firebase user movies with matching title to OMDB Search array
 						for (var movie in userMoviesToSearch) {
@@ -127,7 +127,7 @@ define(function (require) {
 						console.log("searchResults",searchResults);
 						// ***Pass results to HBS template (consider returning movies as object and passing to HBS outside of method?)
 			        		require(["hbs!../templates/find_results"], function(resultsTemplate) {
-			      			$("#movie-catcher").html(resultsTemplate(searchResults));
+			      			$("#movie-catcher").html(resultsTemplate(OMDBSearchResults));
 				  		});
 			        		
 						})
@@ -173,8 +173,17 @@ define(function (require) {
 		userRef.child(movieRef).set("unwatched");
 	});
 
-/*********************** STAR RATING ************************/
-	
+/*********************** Watched btn movie handler ************************/
+	$(document).on("click",".btn-watched-movie", function(event) {
+		console.log("btn-watched-movie clicked");
+		var movieKey = $(event.target.parentElement.firstElementChild.firstElementChild).attr("id");
+		console.log("event", movieKey);
+		var appRef = new Firebase("https://movieshistory.firebaseio.com/");
+		var authData = appRef.getAuth();
+		// create reference to user movie in firebase
+		var userRef = new Firebase("https://movieshistory.firebaseio.com/users/" + authData.uid);
+		userRef.child(movieKey).set(0);
+	});
 
 /********************** Delete Movie click ********************/
 
@@ -191,7 +200,7 @@ define(function (require) {
 
 
 		var appRef = new Firebase("https://movieshistory.firebaseio.com/");
-		var authData = moviesRef.getAuth();
+		var authData = appRef.getAuth();
 		// create reference to user movie in firebase
 		var movieToDeleteRef = new Firebase("https://movieshistory.firebaseio.com/users/" + authData.uid + "/" + movieToDelete);
 		// remove movie ref from user in firebase
