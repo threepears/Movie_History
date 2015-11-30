@@ -173,12 +173,8 @@ define(function (require) {
 		userRef.child(movieRef).set("unwatched");
 	});
 
-/*********************** WATCHED btn click ********************/
-
 /*********************** STAR RATING ************************/
 	
-
-
 
 /********************** Delete Movie click ********************/
 
