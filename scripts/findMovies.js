@@ -12,7 +12,7 @@ return {
       // ***get user input from search box and return object with matching movies from OMDB
   searchOMDBMovies: function (searchInput) {
       var deferred = Q.defer();
-      console.log("inside findMovies function");
+      // console.log("inside findMovies function");
 
       // ***format user input for url to be used in ajax call
       searchInput = searchInput.toLowerCase();
@@ -22,7 +22,7 @@ return {
       $.ajax({url: "http://www.omdbapi.com/?s=" + searchInput + "&r=json"
       }).done( function(searchResults) {
         // console.log("inside findMovies done");
-        console.log("movies = ", searchResults);
+        // console.log("movies = ", searchResults);
         deferred.resolve(searchResults);
       });
       return deferred.promise;

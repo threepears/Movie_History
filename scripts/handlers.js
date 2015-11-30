@@ -27,6 +27,7 @@ define(function (require) {
 	// attach click handler to 'all' link
 	$(document).on("click","#link-all", function(event) {
 		console.log("Filtering 'ALL' users movies");
+		$("#instructions").remove();
 		findMovies.getAllUserMovies()
 			.then(function(userMovieData) {
 			console.log("userMovies", userMovieData);
@@ -38,6 +39,7 @@ define(function (require) {
 	// attach click handler to 'watched' link
 	$(document).on("click","#link-watched", function(event) {
 		console.log("Filtering 'WATCHED' users movies");
+		$("#instructions").remove();
 		var watchedMovies = {};
 		findMovies.getAllUserMovies()
 			.then(function(userMovieData) {
@@ -55,6 +57,7 @@ define(function (require) {
 	// attach click handler to 'unwatched' link
 	$(document).on("click","#link-unwatched", function(event) {
 		console.log("Filtering 'UNWATCHED' users movies");
+		$("#instructions").remove();
 		var unwatchedMovies = {};
 		findMovies.getAllUserMovies()
 			.then(function(userMovieData) {
@@ -73,6 +76,7 @@ define(function (require) {
 	// attach click handler to 'favorites' link
 	$(document).on("click","#link-favorites", function(event) {
 		console.log("Filtering 'FAVORITES' users movies");
+		$("#instructions").remove();
 		var favoriteMovies = {};
 		findMovies.getAllUserMovies()
 			.then(function(userMovieData) {
@@ -95,37 +99,44 @@ define(function (require) {
 		// console.log("keypress detected: ", event.which);
 		if (event.which === 13)
 		{
-			//$("#instructions").remove();
+			$("#instructions").remove();
 			var userInput = $("#search-movies").val();
 			$("#search-movies").val("");
-			console.log("movie Title = ", userInput);
-			
+			console.log("user search input = ", userInput);
+			var searchResults;
 			// search OMDB for movies matching title
 			findMovies.searchOMDBMovies(userInput)
 				.then(function(OMDBSearchResults) {
-		        		var searchResults = OMDBSearchResults;
-		        		console.log("OMDB Search Results", searchResults);
-					
+		        		searchResults = OMDBSearchResults;
 					findMovies.getAllUserMovies()
 						.then(function( userMoviesToSearch ) {
+						
+						// at this point, shoudl have OMDB results in searchResults and firebase movies in userMoviesToSearch
+		        			console.log("OMDB Search Results", searchResults);
 						console.log("userMoviesToSearch", userMoviesToSearch);
+
+						// push firebase user movies with matching title to OMDB Search array
 						for (var movie in userMoviesToSearch) {
 							console.log("movie", userMoviesToSearch[movie].Title);
-							var movieTitle = movie.Title.toLowerCase();
+							var movieTitle = userMoviesToSearch[movie].Title.toLowerCase();
 							var userTitleSearch = userInput.toLowerCase();
 							if (movieTitle === userTitleSearch) {
-							 	searchResults.push(movie.val());
+							 	searchResults.Search.push(userMoviesToSearch[movie]);
 							} // END if
 						} // END for-in loop
 						console.log("searchResults",searchResults);
+						// ***Pass results to HBS template (consider returning movies as object and passing to HBS outside of method?)
+			        		require(["hbs!../templates/find_results"], function(resultsTemplate) {
+			      			$("#movie-catcher").html(resultsTemplate(searchResults));
+				  		});
+			        		
+						})
+						.fail(function(error) {
+							console.log("error", error);
 						});
 
 					// JOIN SEARCH RESULTS AND PASS TO HBS
 
-					// ***Pass results to HBS template (consider returning movies as object and passing to HBS outside of method?)
-		        		require(["hbs!../templates/find_results"], function(resultsTemplate) {
-		      			$("#movie-catcher").html(resultsTemplate(OMDBSearchResults));
-			  		});
 				})
 				.done();
 		}
