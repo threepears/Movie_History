@@ -7,8 +7,10 @@ function($, Firebase,Q) {
   var userDataRef = new Firebase("https://movieshistory.firebaseio.com/users/"+userUID);
 
 return {
+
+  /***********************findOMDBMovies*********************/
       // ***get user input from search box and return object with matching movies from OMDB
-  findOMDBMovies: function (searchInput) {
+  searchOMDBMovies: function (searchInput) {
       var deferred = Q.defer();
       console.log("inside findMovies function");
 
@@ -25,6 +27,7 @@ return {
       });
       return deferred.promise;
     },
+
 
 
     /*************** getAllUserMovies ***********/

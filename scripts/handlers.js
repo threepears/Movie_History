@@ -95,15 +95,30 @@ define(function (require) {
 		// console.log("keypress detected: ", event.which);
 		if (event.which === 13)
 		{
-			var userInput = $("#search-movies").val(); 
+			//$("#instructions").remove();
+			var userInput = $("#search-movies").val();
+			$("#search-movies").val("");
 			console.log("movie Title = ", userInput);
 			
 			// search OMDB for movies matching title
-			findMovies.findOMDBMovies(userInput)
+			findMovies.searchOMDBMovies(userInput)
 				.then(function(OMDBSearchResults) {
-		        		console.log("OMDB Search Results", OMDBSearchResults);
-
-					// CALL FUNCTION TO SEARCH FIREBASE FOR MOVIES HERE
+		        		var searchResults = OMDBSearchResults;
+		        		console.log("OMDB Search Results", searchResults);
+					
+					findMovies.getAllUserMovies()
+						.then(function( userMoviesToSearch ) {
+						console.log("userMoviesToSearch", userMoviesToSearch);
+						for (var movie in userMoviesToSearch) {
+							console.log("movie", userMoviesToSearch[movie].Title);
+							var movieTitle = movie.Title.toLowerCase();
+							var userTitleSearch = userInput.toLowerCase();
+							if (movieTitle === userTitleSearch) {
+							 	searchResults.push(movie.val());
+							} // END if
+						} // END for-in loop
+						console.log("searchResults",searchResults);
+						});
 
 					// JOIN SEARCH RESULTS AND PASS TO HBS
 
@@ -111,7 +126,8 @@ define(function (require) {
 		        		require(["hbs!../templates/find_results"], function(resultsTemplate) {
 		      			$("#movie-catcher").html(resultsTemplate(OMDBSearchResults));
 			  		});
-				});
+				})
+				.done();
 		}
 	});
 
@@ -122,7 +138,7 @@ define(function (require) {
 		var moviePoster = $(event.target.parentElement.firstElementChild.firstElementChild).attr("src");
 		var movieTitle = $(event.target.parentElement.firstElementChild.firstElementChild).attr("alt");
 		var movieActors = "actors"; // how do we get the actors?
-		var movieYear = "year"; // currently stored in HBS template on DOM
+		var movieYear = $(event.target.parentElement.firstElementChild.firstElementChild).attr("year"); // currently stored in HBS template on DOM
 
 		var movieData = {
 			"Poster": moviePoster,
@@ -137,7 +153,7 @@ define(function (require) {
 		// movieRef stores a reference to the path of where we are pushing our data....which is firebase/movies
 		// when you use push, Firebase creates a unique id
 		var movieRef = moviesRef.push(movieData);
-		movieRef = movieRef.toString().split("movies/")[1]	;
+		movieRef = movieRef.toString().split("movies/")[1];
 		console.log("movieRef", movieRef);
 
 		// get current auth user ID and store movie under user firebase location

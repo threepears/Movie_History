@@ -13,7 +13,6 @@ img.movie-poster {
 
 @import "splash";
 
-
 .movie button {
 	position: absolute;
 	top: 8px;
@@ -25,4 +24,13 @@ img.movie-poster {
 
 .btn-add-movie {
 	margin: 5px 20px 20px 20px;
+}
+
+nav input {
+	vertical-align: middle;
+	margin-top: 10px;
+}
+nav button {
+	vertical-align: middle;
+	margin-top: 5px;
 }
