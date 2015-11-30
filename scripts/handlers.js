@@ -185,16 +185,19 @@ define(function (require) {
 	$(document).on("click", "#btn-delete-movie", function(event) {
 		// console.log("click to delete movie poster");
 		// console.log(event.target.parentElement.parentElement);
+		
 		// remove movie poster and info from DOM
 		$(event.target.parentElement.parentElement.remove());
 		// get movie id from DOM
-		var movieToDelete = $(event.target.parentElement.firstElementChild[0]);
-		console.log("movieToDelete", movieToDelete);
-		// create reference to user movie in firebase
-		var moviesRef = new Firebase("https://movieshistory.firebaseio.com/movies");
+		var movieToDelete = event.target.parentElement.firstElementChild;
+		movieToDelete = $(movieToDelete).attr('id');
+		// console.log("movieToDelete", movieToDelete);
+
+
+		var appRef = new Firebase("https://movieshistory.firebaseio.com/");
 		var authData = moviesRef.getAuth();
+		// create reference to user movie in firebase
 		var movieToDeleteRef = new Firebase("https://movieshistory.firebaseio.com/users/" + authData.uid + "/" + movieToDelete);
-		console.log("movieToDeleteRef",movieToDeleteRef.toString());
 		// remove movie ref from user in firebase
 		movieToDeleteRef.remove();
 	});	
