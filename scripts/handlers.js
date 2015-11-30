@@ -150,6 +150,13 @@ define(function (require) {
 
 /*********************** STAR RATING ************************/
 	
-	
+
+
+
+/********************** Delete Movie click ********************/
+
+	$(document).on("click", "#btn-delete-movie", function(event) {
+		console.log("click to delete movie poster");
+	});	
 
 });
