@@ -1,25 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Movie History</title>
+		<title>Movie History Database</title>
 
-	<link href="./lib/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- 	<link href="./lib/bower_components/bootstrap-star-rating/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" /> -->
-	<link href="./lib/bower_components/seiyria-bootstrap-slider/css/bootstrap-slider.css" rel="stylesheet">
-	<link href="./styles/main.css" rel="stylesheet">
-	<link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
-</head>
+		<link href="./lib/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- 	<link href="./lib/bower_components/bootstrap-star-rating/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" /> -->
+		<link href="./lib/bower_components/seiyria-bootstrap-slider/css/bootstrap-slider.css" rel="stylesheet">
+		<link href="./styles/main.css" rel="stylesheet">
+		<link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+	</head>
 
-<body>
-	
-	<!-- element to hold html app templates -->
-	<div id="catcher"></div>
-	
-	<!-- scripts -->
-	<script data-main="./scripts/main" src="./lib/bower_components/requirejs/require.js"></script>
-</body>
+	<body>
+
+		<!-- HOME PAGE -->
+
+		<section id="entry-screen" class="page">
+			<div class="text-center container container-fluid">
+			  	<div class="row">
+					<div class="span12 offset1">
+						<h1 id="page-title">Movie History</h1>
+						<form>
+							<!-- email email -->
+							<div class="row">
+			  					<input type="text" id="email" required="true" placeholder="user@email.com" autofocus>
+			  				</div>
+
+							<!-- password input -->
+							<div class="row">
+								<input type="password" id="pwd" maxlength="10" required="true" placeholder="password">
+							</div>
+
+			  				<!-- login/register buttons -->
+			  				<div class="row">
+			            		<div id="error"></div>
+			  					<button id="btn-register" class="btn btn-danger btn-lg" type="button">Register</button>
+			  					<button id="btn-login" class="btn btn-danger btn-lg" type="button">Login</button>
+			  				</div>
+			      
+						</form>
+
+			        </div>
+			    </div>
+			</div>
+		</section>
+
+
+		<!-- MAIN PAGE -->
+
+		<section id="adeles-hello" class="main-page page" style="display:none">
+
+			<!-- element to hold html app templates -->
+			<div id="catcher"></div>
+		
+
+
+		</section>
+
+
+
+		<!-- scripts -->
+		<script data-main="./scripts/main" src="./lib/bower_components/requirejs/require.js"></script>
+	</body>
 </html>

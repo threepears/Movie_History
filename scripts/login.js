@@ -1,7 +1,8 @@
 define(["firebase","templates","findMovies"], function (Firebase, templates, findMovies) {
-	var ref = new Firebase("https://movieshistory.firebaseio.com/");	
+	var ref = new Firebase("https://movieshistory.firebaseio.com/");
+	
 	// load splash screen
-	templates.loadSplash();
+/*	templates.loadSplash();*/
 
 	return {
 		createNewUser: function() {
@@ -31,7 +32,7 @@ define(["firebase","templates","findMovies"], function (Firebase, templates, fin
 				var userID = userData.uid;
 				// direct user to initial_page after successful login
 				templates.loadInitialPage();
-
+			
 				} // end else
 			}); // end  onComplete callback for ref.createUser
 		}, // end login.createNewUser
