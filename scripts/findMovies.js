@@ -19,7 +19,7 @@ return {
       searchInput = searchInput.replace(/ /g, "+");
 
       // ***submit GET request to OMDB
-      $.ajax({url: "http://www.omdbapi.com/?s=" + searchInput + "&r=json"
+      $.ajax({url: "http://www.omdbapi.com/?s=" + searchInput + "&type=movie"
       }).done( function(searchResults) {
         // console.log("inside findMovies done");
          // console.log("movies = ", searchResults);

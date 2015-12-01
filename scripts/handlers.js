@@ -31,7 +31,7 @@ define(function (require) {
 		findMovies.getAllUserMovies()
 			.then(function(userMovieData) {
 			console.log("userMovies", userMovieData);
-			require(["hbs!../templates/filter_results"], function(resultsTemplate) {
+			require(["hbs!../templates/filter_results"], function (resultsTemplate) {
 				$("#movie-catcher").html(resultsTemplate(userMovieData));
 			});
 		});
@@ -49,7 +49,7 @@ define(function (require) {
 					}
 				}
 				console.log("watched movies", watchedMovies);
-				require(["hbs!../templates/filter_results"], function(resultsTemplate) {
+				require(["hbs!../templates/filter_results"], function (resultsTemplate) {
 					$("#movie-catcher").html(resultsTemplate(watchedMovies));
 				});
 			});
@@ -68,7 +68,7 @@ define(function (require) {
 					}
 				}
 				console.log("unwatchedMovies",unwatchedMovies);
-				require(["hbs!../templates/filter_results"], function(resultsTemplate) {
+				require(["hbs!../templates/filter_results"], function (resultsTemplate) {
 					$("#movie-catcher").html(resultsTemplate(unwatchedMovies));
 				});
 			});
@@ -87,7 +87,7 @@ define(function (require) {
 					}
 				}
 				console.log("favorite movies", favoriteMovies);
-				require(["hbs!../templates/filter_results"], function(resultsTemplate) {
+				require(["hbs!../templates/filter_results"], function (resultsTemplate) {
 					$("#movie-catcher").html(resultsTemplate(favoriteMovies));
 				});
 			});
@@ -126,7 +126,7 @@ define(function (require) {
 						} // END for-in loop
 						console.log("searchResults",searchResults);
 						// ***Pass results to HBS template (consider returning movies as object and passing to HBS outside of method?)
-			        		require(["hbs!../templates/find_results"], function(resultsTemplate) {
+			        		require(["hbs!../templates/find_results"], function (resultsTemplate) {
 			      			$("#movie-catcher").html(resultsTemplate(OMDBSearchResults));
 				  		});
 			        		
