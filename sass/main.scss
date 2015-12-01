@@ -4,6 +4,101 @@ $primary-color: #333;
 body {
   font: 20px $font-stack;
   color: $primary-color;
+  background: url("http://www.hittingthestage.com/wp-content/uploads/2013/12/movie_theatre.jpg") no-repeat center center fixed;
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+.container {
+	width: 800px !important;
+}
+
+h1#page-title {
+	font-family: 'Oswald', sans-serif;
+  	margin: 75px 0 30px;
+  	margin-top: 165px;
+  	font-size: 4em;
+  	text-transform: uppercase;
+  	color: #000;
+}
+
+div.span12 h1 {
+	margin-top: 18%;
+	font-weight: bold;
+	background-color: #acacac;
+  	color: transparent;
+  	text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
+  	-webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
+}
+
+#btn-register,
+#btn-login {
+  margin: 30px 10px 20px;
+}
+
+.row input {
+  margin: 5px 0;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+#catcher nav {
+	background-color: #000;
+	border: 0;
+}
+
+#bs-example-navbar-collapse-1 {
+	padding-left: 0;
+}
+
+#search-movies {
+	font-size: 1.2em;
+	padding-left: 10px;
+}
+
+#btn-logout {
+	margin-top: 10px;
+}
+
+.btn-group {
+	vertical-align: top;
+	margin-right: 80px;
+}
+
+#sliderContainer {
+	display: inline-block;
+	background-color: #e5ba4d;
+	width: 280px;
+	height: 34px;
+	border-radius: 5px;
+}
+
+.slider {
+	top: -3px;
+}
+
+.glyphicon {
+	color: yellow;
+	padding: 6px 15px 0 0;
+	text-shadow: 0 1px 2px #b2871a;
+}
+
+hr {
+	margin: 12px 0;
+}
+
+#results {
+	padding-top: 20px;
+}
+
+.well {
+	opacity: 0.9;
+	min-height: 500px;
+	padding-top: 12px;
 }
 
 img.movie-poster {
@@ -11,15 +106,13 @@ img.movie-poster {
 	width: 150px;
 }
 
-@import "splash";
-
 .movie button {
 	position: absolute;
-	top: 8px;
-	right: 80px;
-	margin: 0;
-	padding: 0;
+	top: 5px;
+	right: 28px;
 	border: 0;
+	background-color: transparent;
+	color: #fff;
 }
 
 .btn-add-movie {

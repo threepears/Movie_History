@@ -11,22 +11,32 @@
      </ul>
      
      <ul class="nav navbar-nav navbar-right">
-       <li><button class="btn btn-default" id="btn-logout" type="button">Logout</button></li>
+       <li><button class="btn btn-danger" id="btn-logout" type="button">Logout</button></li>
      </ul>
    </div><!-- /.navbar-collapse -->
  </div><!-- /.container-fluid -->
 </nav>
 
 <div class="container container-fluid text-center well">
-  <div class="row">
-      <a href="#" id="link-all">All</a>
+  <div class="row" id="filters">
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" id="link-all" class="btn btn-danger">All</button>
+      <button type="button" id="link-watched" class="btn btn-danger">Watched</button>
+      <button type="button" id="link-unwatched" class="btn btn-danger">Unwatched</button>
+    </div>
+    <div id="sliderContainer">
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+{{!--       <a href="#" id="link-all">All</a>
       <a href="#" id="link-watched">Watched</a>
       <a href="#" id="link-unwatched">Unwatched</a>
-      <a href="#" id="link-favorites">Favorites</a>
+      <a href="#" id="link-favorites">Favorites</a> --}}
+      <input id="ex17a" type="text"/>
+    </div>
   </div>
-  <div class="row">
+  <hr/>
+  <div class="row" id="results">
     <div class="span12 offset1">
-        <h1 id="instructions">Search movies to add to database.</h1>
+        <h1 id="instructions">Search movies to add to database</h1>
     </div>
 
     <!-- div to hold movies to display. -->

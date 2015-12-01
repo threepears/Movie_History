@@ -31,6 +31,7 @@ define(["firebase","templates","findMovies"], function (Firebase, templates, fin
 				var userID = userData.uid;
 				// direct user to initial_page after successful login
 				templates.loadInitialPage();
+
 				} // end else
 			}); // end  onComplete callback for ref.createUser
 		}, // end login.createNewUser
@@ -69,6 +70,8 @@ define(["firebase","templates","findMovies"], function (Firebase, templates, fin
 					// direct user to initial_page after successful login
 					templates.loadInitialPage();
 					findMovies.getAllUserMovies();
+
+					$("#ex17a").slider({min  : 0, max  : 10, value: 0, tooltip_position:'bottom'});
 				} // end else
 			}); // end onComplete callback for ref.authWithPassword
 		}, // end loginUser
